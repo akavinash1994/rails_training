@@ -1,0 +1,23 @@
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>Email</strong>
+  <%= @user.email %>
+</p>
+<h2>Articles</h2>
+<% @user.articles.each do |article| %>
+  <p>
+    <strong>Title:</strong>
+    <%= article.title %>
+  </p>
+ 
+  <p>
+    <strong>Text:</strong>
+    <%= article.text %>
+  </p>
+  <td><%= link_to 'Show', user_article_path(@user, article) %></td>
+
+<% end %>
