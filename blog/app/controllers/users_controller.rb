@@ -1,29 +1,38 @@
 class UsersController < ApplicationController
-  before_filter :save_login_state, :only => [:new, :create]
   def index
-    @users = User.all
+    if current_user.admin?
+      @user =User.all
+    else
+      return log_out
+    end 
   end
+
   def show
-    
     @user = User.find(params[:id])
-    
   end
 
   def new
-  @user = User.new
-end
+    @user = User.new
+  end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      log_in @user
+      redirect_to user_path(@user)
     else
       render 'new'
-      end
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to users_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :address)
+    params.require(:user).permit(:name, :email, :password, :address, :admin)
   end
 end

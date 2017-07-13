@@ -1,0 +1,18 @@
+# <h1>Listing Users</h1>
+<table>
+  <tr>
+    <th>name</th>
+    <th>email</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @users.each do |user| %> 
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      </td>
+      <td><%= link_to "    Show", user_path(user) %></td>
+      <td><%= link_to "    Delete", user_path(user), method: :delete %></td>
+      <td colspan="8"></td>
+    </tr>
+  <% end %>
+</table> 
