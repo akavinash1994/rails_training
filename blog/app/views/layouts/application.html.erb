@@ -20,18 +20,6 @@
          <%# <a class="navbar-brand" href="#">MY blog</a> -%>
          <%= link_to "My Blog",root_path , class: "navbar-brand" %>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-             <%# <li><a href="">Articles</a></li> -%>
-             <li><%= link_to 'Index', users_path  %></li>
-             <li><%= link_to 'New',new_user_path %></li>
-              <%#<li><a href="#">article</a></li> -%>
-            </ul>
-          </li>
-        </ul>
         <div class="navbar-header2">
          <%# <a class="navbar-brand" href="#">MY blog</a> -%>
          <%= link_to "SIGNUP",new_user_path, class: "navbar-brand" %>
