@@ -12,33 +12,27 @@
       float: right;
     }
   </style>
-
   <body>
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-         <%# <a class="navbar-brand" href="#">MY blog</a> -%>
          <%= link_to "My Blog",root_path , class: "navbar-brand" %>
         </div>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users
-            <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-             <%# <li><a href="">Articles</a></li> -%>
-             <li><%= link_to 'Index', users_path  %></li>
-             <li><%= link_to 'New',new_user_path %></li>
-              <%#<li><a href="#">article</a></li> -%>
-            </ul>
-          </li>
-        </ul>
         <div class="navbar-header2">
-         <%# <a class="navbar-brand" href="#">MY blog</a> -%>
-         <%= link_to "SIGNUP",new_user_path, class: "navbar-brand" %>
-         <%= link_to "LOGIN",sessions_login_path, class: "navbar-brand" %>
-        </div>        
+         <% if logged_in? %>
+          <%= link_to "Log out", session_path(current_user), method: :delete %> 
+          <% else %>
+           <%= link_to "SIGNUP",new_user_path, class: "navbar-brand" %>
+           <%= link_to "LOGIN",new_session_path, class: "navbar-brand" %>
+          <% end %>
+        </div>
       </div>
     </nav>
+    <% flash.each do |key, value| %>
+     <div class="alert alert-<%= key %>">
+       <%= value %>
+     </div>
+    <% end %>
       <%= yield %>
   </body>
 </html>
